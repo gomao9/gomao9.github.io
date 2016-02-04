@@ -1,0 +1,61 @@
+<html lang='en'>
+<head>
+  <title>Nyaplot</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
+  <script>if(window['d3'] === undefined ||
+   window['Nyaplot'] === undefined){
+    var path = {"d3":"https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min","downloadable":"http://cdn.rawgit.com/domitry/d3-downloadable/master/d3-downloadable"};
+
+
+
+    var shim = {"d3":{"exports":"d3"},"downloadable":{"exports":"downloadable"}};
+
+    require.config({paths: path, shim:shim});
+
+
+require(['d3'], function(d3){window['d3']=d3;console.log('finished loading d3');require(['downloadable'], function(downloadable){window['downloadable']=downloadable;console.log('finished loading downloadable');
+
+	var script = d3.select("head")
+	    .append("script")
+	    .attr("src", "http://cdn.rawgit.com/domitry/Nyaplotjs/master/release/nyaplot.js")
+	    .attr("async", true);
+
+	script[0][0].onload = script[0][0].onreadystatechange = function(){
+
+
+	    var event = document.createEvent("HTMLEvents");
+	    event.initEvent("load_nyaplot",false,false);
+	    window.dispatchEvent(event);
+	    console.log('Finished loading Nyaplotjs');
+
+	};
+
+
+});});
+}
+</script>
+</head>
+<body><div id='vis-97fcc60e-61a7-4444-af2e-f9d93e881ba6'></div>
+<script>
+(function(){
+    var render = function(){
+        var model = {"panes":[{"diagrams":[{"type":"heatmap","options":{"x":"data0","y":"data1","fill":"data2","color":["rgb(127,201,127)","rgb(190,174,212)","rgb(253,192,134)","rgb(255,255,153)","rgb(56,108,176)"],"stroke_color":"#fff","stroke_width":"0","width":2,"height":1},"data":"8d18d1a9-9a60-4fcc-abd6-0b0f9c0ce076"}],"options":{"legend":true,"zoom":true,"width":800,"xrange":[0,6],"yrange":[0,23]}}],"data":{"8d18d1a9-9a60-4fcc-abd6-0b0f9c0ce076":[{"data0":0,"data1":0,"data2":8377},{"data0":0,"data1":1,"data2":2529},{"data0":0,"data1":2,"data2":1373},{"data0":0,"data1":3,"data2":810},{"data0":0,"data1":4,"data2":643},{"data0":0,"data1":5,"data2":575},{"data0":0,"data1":6,"data2":793},{"data0":0,"data1":7,"data2":963},{"data0":0,"data1":8,"data2":1184},{"data0":0,"data1":9,"data2":1247},{"data0":0,"data1":10,"data2":1304},{"data0":0,"data1":11,"data2":1307},{"data0":0,"data1":12,"data2":1318},{"data0":0,"data1":13,"data2":1266},{"data0":0,"data1":14,"data2":1192},{"data0":0,"data1":15,"data2":1058},{"data0":0,"data1":16,"data2":1050},{"data0":0,"data1":17,"data2":1154},{"data0":0,"data1":18,"data2":1222},{"data0":0,"data1":19,"data2":1294},{"data0":0,"data1":20,"data2":1408},{"data0":0,"data1":21,"data2":1558},{"data0":0,"data1":22,"data2":1821},{"data0":0,"data1":23,"data2":2070},{"data0":1,"data1":0,"data2":7069},{"data0":1,"data1":1,"data2":2094},{"data0":1,"data1":2,"data2":1193},{"data0":1,"data1":3,"data2":633},{"data0":1,"data1":4,"data2":468},{"data0":1,"data1":5,"data2":467},{"data0":1,"data1":6,"data2":759},{"data0":1,"data1":7,"data2":1018},{"data0":1,"data1":8,"data2":1072},{"data0":1,"data1":9,"data2":916},{"data0":1,"data1":10,"data2":1038},{"data0":1,"data1":11,"data2":949},{"data0":1,"data1":12,"data2":1427},{"data0":1,"data1":13,"data2":1149},{"data0":1,"data1":14,"data2":1366},{"data0":1,"data1":15,"data2":1133},{"data0":1,"data1":16,"data2":1076},{"data0":1,"data1":17,"data2":2357},{"data0":1,"data1":18,"data2":1894},{"data0":1,"data1":19,"data2":1834},{"data0":1,"data1":20,"data2":1828},{"data0":1,"data1":21,"data2":1893},{"data0":1,"data1":22,"data2":1816},{"data0":1,"data1":23,"data2":2072},{"data0":2,"data1":0,"data2":8293},{"data0":2,"data1":1,"data2":2644},{"data0":2,"data1":2,"data2":1244},{"data0":2,"data1":3,"data2":684},{"data0":2,"data1":4,"data2":497},{"data0":2,"data1":5,"data2":548},{"data0":2,"data1":6,"data2":924},{"data0":2,"data1":7,"data2":1280},{"data0":2,"data1":8,"data2":1208},{"data0":2,"data1":9,"data2":1065},{"data0":2,"data1":10,"data2":1040},{"data0":2,"data1":11,"data2":1001},{"data0":2,"data1":12,"data2":1457},{"data0":2,"data1":13,"data2":1020},{"data0":2,"data1":14,"data2":1148},{"data0":2,"data1":15,"data2":1012},{"data0":2,"data1":16,"data2":945},{"data0":2,"data1":17,"data2":2812},{"data0":2,"data1":18,"data2":2084},{"data0":2,"data1":19,"data2":1880},{"data0":2,"data1":20,"data2":1791},{"data0":2,"data1":21,"data2":1834},{"data0":2,"data1":22,"data2":1867},{"data0":2,"data1":23,"data2":2143},{"data0":3,"data1":0,"data2":10605},{"data0":3,"data1":1,"data2":2851},{"data0":3,"data1":2,"data2":1505},{"data0":3,"data1":3,"data2":838},{"data0":3,"data1":4,"data2":664},{"data0":3,"data1":5,"data2":666},{"data0":3,"data1":6,"data2":1125},{"data0":3,"data1":7,"data2":1552},{"data0":3,"data1":8,"data2":1468},{"data0":3,"data1":9,"data2":1186},{"data0":3,"data1":10,"data2":1095},{"data0":3,"data1":11,"data2":1045},{"data0":3,"data1":12,"data2":1468},{"data0":3,"data1":13,"data2":1154},{"data0":3,"data1":14,"data2":1537},{"data0":3,"data1":15,"data2":1162},{"data0":3,"data1":16,"data2":1150},{"data0":3,"data1":17,"data2":2749},{"data0":3,"data1":18,"data2":2164},{"data0":3,"data1":19,"data2":1826},{"data0":3,"data1":20,"data2":1869},{"data0":3,"data1":21,"data2":1964},{"data0":3,"data1":22,"data2":2001},{"data0":3,"data1":23,"data2":2350},{"data0":4,"data1":0,"data2":6680},{"data0":4,"data1":1,"data2":2069},{"data0":4,"data1":2,"data2":1120},{"data0":4,"data1":3,"data2":608},{"data0":4,"data1":4,"data2":444},{"data0":4,"data1":5,"data2":492},{"data0":4,"data1":6,"data2":802},{"data0":4,"data1":7,"data2":1226},{"data0":4,"data1":8,"data2":1206},{"data0":4,"data1":9,"data2":950},{"data0":4,"data1":10,"data2":932},{"data0":4,"data1":11,"data2":876},{"data0":4,"data1":12,"data2":1294},{"data0":4,"data1":13,"data2":932},{"data0":4,"data1":14,"data2":1000},{"data0":4,"data1":15,"data2":794},{"data0":4,"data1":16,"data2":713},{"data0":4,"data1":17,"data2":4176},{"data0":4,"data1":18,"data2":3332},{"data0":4,"data1":19,"data2":3293},{"data0":4,"data1":20,"data2":2663},{"data0":4,"data1":21,"data2":2433},{"data0":4,"data1":22,"data2":2453},{"data0":4,"data1":23,"data2":2550},{"data0":5,"data1":0,"data2":8230},{"data0":5,"data1":1,"data2":2673},{"data0":5,"data1":2,"data2":1404},{"data0":5,"data1":3,"data2":801},{"data0":5,"data1":4,"data2":604},{"data0":5,"data1":5,"data2":604},{"data0":5,"data1":6,"data2":1063},{"data0":5,"data1":7,"data2":1486},{"data0":5,"data1":8,"data2":1310},{"data0":5,"data1":9,"data2":1106},{"data0":5,"data1":10,"data2":1031},{"data0":5,"data1":11,"data2":961},{"data0":5,"data1":12,"data2":1589},{"data0":5,"data1":13,"data2":1197},{"data0":5,"data1":14,"data2":1481},{"data0":5,"data1":15,"data2":1080},{"data0":5,"data1":16,"data2":1006},{"data0":5,"data1":17,"data2":1783},{"data0":5,"data1":18,"data2":1681},{"data0":5,"data1":19,"data2":1686},{"data0":5,"data1":20,"data2":1706},{"data0":5,"data1":21,"data2":1709},{"data0":5,"data1":22,"data2":1736},{"data0":5,"data1":23,"data2":1945},{"data0":6,"data1":0,"data2":6794},{"data0":6,"data1":1,"data2":2424},{"data0":6,"data1":2,"data2":1285},{"data0":6,"data1":3,"data2":708},{"data0":6,"data1":4,"data2":585},{"data0":6,"data1":5,"data2":514},{"data0":6,"data1":6,"data2":783},{"data0":6,"data1":7,"data2":1056},{"data0":6,"data1":8,"data2":1168},{"data0":6,"data1":9,"data2":1170},{"data0":6,"data1":10,"data2":1152},{"data0":6,"data1":11,"data2":1187},{"data0":6,"data1":12,"data2":1336},{"data0":6,"data1":13,"data2":1283},{"data0":6,"data1":14,"data2":1057},{"data0":6,"data1":15,"data2":1003},{"data0":6,"data1":16,"data2":1090},{"data0":6,"data1":17,"data2":1255},{"data0":6,"data1":18,"data2":1269},{"data0":6,"data1":19,"data2":1233},{"data0":6,"data1":20,"data2":1312},{"data0":6,"data1":21,"data2":1443},{"data0":6,"data1":22,"data2":1482},{"data0":6,"data1":23,"data2":1811}]},"extension":[]}
+        var id_name = '#vis-97fcc60e-61a7-4444-af2e-f9d93e881ba6';
+        Nyaplot.core.parse(model, id_name);
+
+        require(['downloadable'], function(downloadable){
+          var svg = d3.select(id_name).select("svg");
+	  if(!svg.empty())
+	    svg.call(downloadable().filename('fig'));
+	});
+    };
+    if(window['Nyaplot']==undefined){
+        window.addEventListener('load_nyaplot', render, false);
+	return;
+    } else {
+       render();
+    }
+})();
+</script>
+</body>
+</html>
