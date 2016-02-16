@@ -6,6 +6,7 @@ $(document).ready(function() {
   // TODO 本文検索
   // TODO 3アイドル検索（ドロップダウンを3つ)
   // TODO 外部リンクは別タブで
+  // TODO ドロップダウンをちゃんとつかえるものにする
 
   var speaker1 = "";
   // アイドル一覧を取得してドロップダウン化
@@ -37,10 +38,10 @@ $(document).ready(function() {
       dataType: "json",
       success: function(data){
         tags = data.map(function(dialog){
-          content = dialog.attributes.dialogs.map(function(d){
+          content = dialog.dialogs.map(function(d){
             return $('<p></p>', {text:d.speaker + ':' + d.text});
           });
-          return $('<li></li>', {class:"list-group-item"}).append($("<a></a>", {href:dialog.attributes.url, text:"参照"})).append(content);
+          return $('<li></li>', {class:"list-group-item"}).append($("<a></a>", {href:dialog.url, text:"参照"})).append(content);
         });
         return $dialogs.append(tags);
       }
