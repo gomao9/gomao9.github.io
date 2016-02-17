@@ -1,8 +1,6 @@
 $(document).ready(function() {
 
   // TODO レスポンシブ
-  // TODO 再検索時結果クリア
-  // TODO 検索待ちgifアニメ
   // TODO 本文検索
   // TODO 3アイドル検索（ドロップダウンを3つ)
   // TODO 外部リンクは別タブで
@@ -30,13 +28,17 @@ $(document).ready(function() {
 
   // 検索
   $("#search").click(function(){
+    // ロード中
+    $btn = $(this).button('loading');
     $dialogs = $('#dialogs');
+    $dialogs.empty();
+
     $.ajax({
       type: "GET",
       url: "http://million-memories-server.herokuapp.com/search",
       data: {"speakers":speaker1},
-      dataType: "json",
-      success: function(data){
+      dataType: "json"
+    }).done(function(data){
         tags = data.map(function(dialog){
           content = dialog.dialogs.map(function(d){
             return $('<p></p>', {text:d.speaker + ':' + d.text});
@@ -44,7 +46,9 @@ $(document).ready(function() {
           return $('<li></li>', {class:"list-group-item"}).append($("<a></a>", {href:dialog.url, text:"参照"})).append(content);
         });
         return $dialogs.append(tags);
-      }
+    }).always(function() {
+      $btn.button("reset");
     });
+
   });
 });
