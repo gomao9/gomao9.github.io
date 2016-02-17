@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-  // TODO レスポンシブ
-  // TODO 本文検索
-  // TODO 外部リンクは別タブで
-
   var speaker1 = "";
   var speaker2 = "";
   var speaker3 = "";
@@ -28,18 +24,19 @@ $(document).ready(function() {
     $dialogs.empty();
 
     var speakers = $.makeArray($(':checked').map(function(){return this.value})).join(',');
+    var text = $('#keyword').val();
 
     $.ajax({
       type: "GET",
       url: "http://million-memories-server.herokuapp.com/search",
-      data: {"speakers": speakers},
+      data: {"speakers": speakers, text: text},
       dataType: "json"
     }).done(function(data){
         tags = data.map(function(dialog){
           content = dialog.dialogs.map(function(d){
             return $('<p></p>', {text:d.speaker + ':' + d.text});
           });
-          return $('<li></li>', {class:"list-group-item"}).append($("<a></a>", {href:dialog.url, text:"参照"})).append(content);
+          return $('<li></li>', {class:"list-group-item"}).append($("<a></a>", {target: '_blank', href:dialog.url, text:"参照"})).append(content);
         });
         return $dialogs.append(tags);
     }).always(function() {
