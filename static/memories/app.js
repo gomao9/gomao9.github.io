@@ -2,7 +2,6 @@ $(document).ready(function() {
 
   // TODO レスポンシブ
   // TODO 本文検索
-  // TODO 検索はチェックボックスで
   // TODO 外部リンクは別タブで
 
   var speaker1 = "";
@@ -13,26 +12,12 @@ $(document).ready(function() {
     type: "GET",
     url: "http://million-memories-server.herokuapp.com/idols",
     dataType: "json",
-    success: function(data){
-      var idols = $.map(data, function(idol) {
-        return $("<li></li>", {role: "presentation"})
-          .append($("<a></a>", {role: "menuitem", tabindex: "-1", href: "#", text: idol.name}));
-      });
-    // ドロップダウン追加
-    $("#speaker1").append(idols.map(function(a){return a.clone().addClass('speaker1')}));
-    $("#speaker2").append(idols.map(function(a){return a.clone().addClass('speaker2')}));
-    $("#speaker3").append(idols.map(function(a){return a.clone().addClass('speaker3')}));
-    // ドロップダウン選択時
-    $("li.speaker1").click(function(){
-       speaker1 = $(this).text();
+  }).done(function(data){
+    var idols = $.map(data, function(idol) {
+        $label = $('<label></label>', {class: 'btn btn-default', text: idol.name})
+        return $label.append($('<input />', {type: 'checkbox', value: idol.name}));
     });
-    $("li.speaker2").click(function(){
-       speaker2 = $(this).text();
-    });
-    $("li.speaker3").click(function(){
-       speaker3 = $(this).text();
-    });
-    }
+    $('#idols').append(idols);
   });
 
   // 検索
@@ -42,10 +27,12 @@ $(document).ready(function() {
     $dialogs = $('#dialogs');
     $dialogs.empty();
 
+    var speakers = $.makeArray($(':checked').map(function(){return this.value})).join(',');
+
     $.ajax({
       type: "GET",
       url: "http://million-memories-server.herokuapp.com/search",
-      data: {"speakers":[speaker1,speaker2,speaker3].join(',')},
+      data: {"speakers": speakers},
       dataType: "json"
     }).done(function(data){
         tags = data.map(function(dialog){
