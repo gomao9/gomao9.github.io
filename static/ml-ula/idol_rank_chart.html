@@ -11,21 +11,21 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-      function options() {
+      var json_path = 'https://dl.dropboxusercontent.com/s/txwzs5bz5h2n3jq/idol_rank.json';
+      function options(json) {
         return {
-          title: 'アイドルptランキング',
+          title: json.time,
           hAxis: { textPosition: 'none' },
           legend: { position: 'none' },
         };
       }
 
       function drawChart() {
-        var json_path = 'https://dl.dropboxusercontent.com/s/txwzs5bz5h2n3jq/idol_rank.json'
         $.getJSON(json_path, function(json) {
           var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
           data = google.visualization.arrayToDataTable(json.idol_rank_all);
-          chart.draw(data, options());
-        })
+          chart.draw(data, options(json));
+        });
       }
 
     </script>
