@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function options() {
+        return {
+          title: 'アイドルptランキング',
+          hAxis: { textPosition: 'bottom' },
+          legend: { position: 'top', maxLines: 3},
+          explorer: {
+            maxZoomOut: 10,
+            actions: ['dragToZoom', 'rightClickToReset'],
+            axis: 'horizontal',
+          },
+        };
+      }
+
+      function drawChart() {
+        var json_path = 'https://dl.dropboxusercontent.com/s/lugc8viticbvqnr/team_rank.json'
+        $.getJSON(json_path, function(json) {
+          var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+          data = google.visualization.arrayToDataTable(json);
+          chart.draw(data, options());
+        })
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
