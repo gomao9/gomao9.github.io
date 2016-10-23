@@ -16,7 +16,13 @@
         return {
           title: json.time,
           hAxis: { textPosition: 'none' },
+          vAxis: { format: 'percent'},
           legend: { position: 'none' },
+          seriesType: 'bars',
+          series: {
+            0: {targetAxisIndex: 0, type: 'column' },
+            1: {targetAxisIndex: 1, type: 'line' },
+          },
         };
       }
 
@@ -42,7 +48,7 @@
       }
       function drawChart() {
         $.getJSON(json_path, function(json) {
-          var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+          var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
           data = google.visualization.arrayToDataTable(json[selected()]);
           chart.draw(data, options(json));
         });
