@@ -9,7 +9,7 @@
 
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(ready);
 
       var json_path = 'https://dl.dropboxusercontent.com/s/txwzs5bz5h2n3jq/idol_rank.json';
       function options(json) {
@@ -20,10 +20,30 @@
         };
       }
 
+      function selected(val) {
+        var selected = $('#selected');
+        if(val) {
+          selected.val(val);
+        }
+        return selected.val();
+      }
+      function set_onclick(id, select) {
+        $(id).on('click', function(){
+          selected(select);
+          drawChart();
+        });
+      }
+
+      function ready() {
+        set_onclick('#all', 'idol_rank_all');
+        set_onclick('#top10', 'top10');
+        set_onclick('#unit', 'team');
+        drawChart();
+      }
       function drawChart() {
         $.getJSON(json_path, function(json) {
           var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-          data = google.visualization.arrayToDataTable(json.idol_rank_all);
+          data = google.visualization.arrayToDataTable(json[selected()]);
           chart.draw(data, options(json));
         });
       }
@@ -33,5 +53,9 @@
 
   <body>
     <div id="chart_div"></div>
+    <a href='#' id='all'>全て</a>
+    <a href='#' id='top10'>10位まで</a>
+    <a href='#' id='unit'>ユニットごと</a>
+    <input type='hidden' id='selected'  value='idol_rank_all' />
   </body>
 </html>
