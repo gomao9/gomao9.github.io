@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function options() {
+        return {
+          title: 'アイドルptランキング',
+          hAxis: { textPosition: 'none' },
+          legend: { position: 'none' },
+        };
+      }
+
+      function drawChart() {
+        var json_path = 'https://dl.dropboxusercontent.com/s/txwzs5bz5h2n3jq/idol_rank.json'
+        $.getJSON(json_path, function(json) {
+          var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+          data = google.visualization.arrayToDataTable(json.idol_rank_all);
+          chart.draw(data, options());
+        })
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
