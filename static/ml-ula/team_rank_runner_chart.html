@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>ULAファイナル チームランキング上位合算</title>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(ready);
+
+      var json_path = 'https://dl.dropboxusercontent.com/s/g5n3c8cuzbjaes2/team_rank_runner.json';
+      function options() {
+        return {
+          hAxis: { textPosition: 'bottom' },
+          legend: { position: 'none' },
+          seriesType: 'bars',
+          vAxis: { format: '###.#%' },
+        };
+      }
+
+      function selected(val) {
+        var selected = $('#selected');
+        if(val) {
+          selected.val(val);
+        }
+        return selected.val();
+      }
+      function set_onclick(id, select) {
+        $(id).on('click', function(){
+          selected(select);
+          drawChart();
+        });
+      }
+
+      function ready() {
+        drawChart();
+      }
+      function drawChart() {
+        $.getJSON(json_path, function(json) {
+          var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+          data = google.visualization.arrayToDataTable(json);
+          chart.draw(data, options());
+        });
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
