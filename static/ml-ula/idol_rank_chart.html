@@ -16,13 +16,15 @@
         return {
           title: json.time,
           hAxis: { textPosition: 'none' },
-          vAxis: { format: 'percent'},
           legend: { position: 'none' },
           seriesType: 'bars',
           series: {
-            0: {targetAxisIndex: 0, type: 'column' },
-            1: {targetAxisIndex: 1, type: 'line' },
-          },
+            0: { targetAxisIndex: 0, type: 'column' },
+            1: {
+              targetAxisIndex: 1,
+              type: 'line',
+            },
+          }
         };
       }
 

@@ -1,5 +1,7 @@
 <html>
   <head>
+    <title>ULAファイナル アイドルptランキング</title>
+    <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -9,26 +11,32 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-      function options() {
+      var json_path = 'https://dl.dropboxusercontent.com/s/ltic02nrj2o5nto/idol_rank_time_series.json'
+      function options(json) {
         return {
-          title: 'チーム別ptランキング',
-          hAxis: { textPosition: 'bottom' },
-          legend: { position: 'top', maxLines: 3},
+          hAxis: {
+            textPosition: 'bottom',
+            showTextEvery: 6,
+          },
+          legend: { position: 'right' },
           explorer: {
-            maxZoomOut: 10,
             actions: ['dragToZoom', 'rightClickToReset'],
             axis: 'horizontal',
+          },
+          series: {
+            0: { color: "#7f6575" },
+            1: { color: "#d7a96b" },
+            2: { color: "#99b7dc" },
           },
         };
       }
 
       function drawChart() {
-        var json_path = 'https://dl.dropboxusercontent.com/s/lugc8viticbvqnr/team_rank.json'
         $.getJSON(json_path, function(json) {
           var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
           data = google.visualization.arrayToDataTable(json);
-          chart.draw(data, options());
-        })
+          chart.draw(data, options(json));
+        });
       }
 
     </script>
