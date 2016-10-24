@@ -25,7 +25,7 @@
       function drawChart() {
         var json_path = 'https://dl.dropboxusercontent.com/s/lugc8viticbvqnr/team_rank.json'
         $.getJSON(json_path, function(json) {
-          var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
           data = google.visualization.arrayToDataTable(json);
           chart.draw(data, options());
         })
