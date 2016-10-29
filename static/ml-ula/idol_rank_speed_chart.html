@@ -1,0 +1,48 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+$(function () {
+  var json_path = 'https://dl.dropboxusercontent.com/s/6lwo9h5pozfsixb/idol_rank_speed.json';
+  $.getJSON(json_path, function(json) {
+    draw_chart(json);
+  });
+  draw_chart = function(json) {
+    Highcharts.chart('container', {
+      plotOptions: { line: { marker: { enabled: false } } },
+      title: {
+        text: json.title,
+        x: -20,
+      },
+      xAxis: json.xAxis,
+      yAxis: {
+        title: {
+          text: 'アイドルpt',
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        valueSuffix: '°C'
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+      },
+      series: json.series,
+    });
+  };
+});
+</script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
