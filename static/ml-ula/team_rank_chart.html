@@ -1,40 +1,52 @@
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+$(function () {
+  var json_path = 'https://dl.dropboxusercontent.com/s/lugc8viticbvqnr/idol_rank_speed.json';
+  $.getJSON(json_path, function(json) {
+    draw_chart(json);
+  });
+  draw_chart = function(json) {
+    Highcharts.chart('container', {
+      chart: {
+        renderTo: 'container',
+        zoomType: 'x',
+      },
+      plotOptions: { line: { marker: { enabled: false } } },
+      title: {
+        text: json.title,
+        x: -20,
+      },
+      xAxis: $.extend(json.xAxis, {labels: { step: null }}),
+      yAxis: {
+        title: {
+          text: 'アイドルpt',
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        valueSuffix: 'pt'
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+      },
+      series: json.series,
+    });
+  };
+});
+</script>
 
-      function options() {
-        return {
-          title: 'チーム別ptランキング',
-          hAxis: { textPosition: 'bottom' },
-          legend: { position: 'top', maxLines: 3},
-          explorer: {
-            maxZoomOut: 10,
-            actions: ['dragToZoom', 'rightClickToReset'],
-            axis: 'horizontal',
-          },
-        };
-      }
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-      function drawChart() {
-        var json_path = 'https://dl.dropboxusercontent.com/s/lugc8viticbvqnr/team_rank.json'
-        $.getJSON(json_path, function(json) {
-          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-          data = google.visualization.arrayToDataTable(json);
-          chart.draw(data, options());
-        })
-      }
-
-    </script>
-  </head>
-
-  <body>
-    <div id="chart_div"></div>
-  </body>
-</html>
